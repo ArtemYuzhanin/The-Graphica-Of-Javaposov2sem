@@ -1,6 +1,7 @@
 package Examples;
 
 import javafx.application.Application;
+import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -9,6 +10,8 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
+
+import java.util.List;
 
 public class PaneControl extends Application {
 
@@ -61,9 +64,10 @@ public class PaneControl extends Application {
 
         //Теперь vbtwo
 
+        final Button smallButton = new Button("!!!");
         vbtwo.getChildren().addAll(
                 new ColorPicker(),
-                new Button("!!!"),
+                smallButton,
                 new Label("МЕЕТКАА С ТЕЕКСОТ")
         );
 
@@ -91,6 +95,31 @@ public class PaneControl extends Application {
         rowtwo.setVgrow(Priority.ALWAYS);
 
         mainPain.getRowConstraints().addAll(rowone,rowtwo);
+
+        vbtwo.setAlignment(Pos.BOTTOM_RIGHT);
+
+        //Способ универсальный устанавливать ограничения на элемент
+
+        VBox.setVgrow(smallButton,Priority.ALWAYS);
+        smallButton.setMaxWidth(Double.MAX_VALUE);
+
+        final Button bottom = new Button("снизу");
+        final Button left = new Button("слева");
+        final Button right = new Button("справа");
+        final Button top = new Button("сверху");
+        final Button center = new Button("в центре");
+
+        BorderPane.setAlignment(bottom, Pos.CENTER);
+        bp.setBottom(bottom);
+        bp.setLeft(left);
+        bp.setRight(right);
+        bp.setTop(top);
+        bp.setCenter(center);
+
+        for (Button b: List.of(bottom,left,right,top,center)) {
+            b.setMaxWidth(Double.MAX_VALUE);
+            b.setMaxHeight(Double.MAX_VALUE);
+        }
 
 
 
