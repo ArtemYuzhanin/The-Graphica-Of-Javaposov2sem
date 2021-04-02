@@ -11,7 +11,7 @@ public class MessengerGrid extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        primaryStage.setTitle("Пример с панельками и управлением");
+        primaryStage.setTitle("ВЕРСИЯ С СЕТКОЙ");
         //сцена создаётся на основе парента
         Parent ui = createInterface();
         primaryStage.setScene(new Scene(ui,980,500 ));
