@@ -27,86 +27,71 @@ public class Testino extends Application {
     }
 
     private Parent createInterface() {
-        SimpleDateFormat day = new SimpleDateFormat("dd/MM/yyyy");
         SimpleDateFormat messagetime = new SimpleDateFormat("HH:mm:ss dd/MM/yyyy");
-
-        GridPane manePain = new GridPane();
+        HBox manePain = new HBox();
+        manePain.setStyle("-fx-background-color: red");
+        manePain.setPrefSize(980,500);
+        VBox left = new VBox();
+        left.setStyle("-fx-background-color: yellow");
 
         HBox chatwrap = new HBox();
+        chatwrap.setStyle("-fx-background-color: green");
         TextArea chat = new TextArea();
         //TextFlow chat = new TextFlow();
         chat.setWrapText(true);
         chat.setEditable(false);
-
-        HBox commentwrap = new HBox();
-        TextField comment = new TextField();
-        comment.setAlignment(Pos.TOP_LEFT);
-        comment.setPromptText("Введите сообщение");
-
-        HBox sendwrap = new HBox();
-        Button send = new Button("ОТПРАВИТЬ");
-        send.addEventHandler(ActionEvent.ACTION, actionEvent -> {
-            Date date = new Date();
-            chat.setStyle("-fx-highlight-fill: #ADFF2F; -fx-highlight-text-fill: #B22222; -fx-font-size: 13px;");
-            chat.setText(chat.getText()+ "Xx_TrueGamer2001_xX ("+ messagetime.format(date) +")\n");
-            chat.setStyle("-fx-highlight-fill: #ADFF2F; -fx-highlight-text-fill: #B22222; -fx-font-size: 16px;");
-            chat.setText(chat.getText()+ comment.getText()+"\n\n");
-            comment.setText("");
-            comment.requestFocus();
-                });
-
-        VBox peoplewrap = new VBox();
-        ObservableList<String> langs = FXCollections.observableArrayList("Санёк", "Ефим Владимирович", "Катя", "Ролики и Велосипеды", "Енисей","Тётя Лида", "Ножи Под Заказ","Оксана Михайловна","Егор","Папа","ОАО 'Корнеплод'","Сосед Ваня","Лена","Армэн (Арбузы)","Никита","Имя Фамилия","Елисей");
-        ListView<String> people = new ListView<>(langs);
-        people.setStyle("-fx-control-inner-background: #f5d0f1;-fx-control-inner-background-alt: #f5c4f0;");
-        //people.setStyle("-fx-control-inner-background-alt: derive(-fx-control-inner-background, 50%);");
-
-        HBox lblwrap = new HBox();
-        Label lbl = new Label("Контакты:");
-
-        for (int i = 0; i < 10; i++) {
-            RowConstraints row = new RowConstraints(50);
-            manePain.getRowConstraints().add(row);
-        }
-
-        for (int i = 0; i < 14; i++) {
-            ColumnConstraints column = new ColumnConstraints(70);
-            manePain.getColumnConstraints().add(column);
-        }
-
-        manePain.add(chatwrap,0,0,10,7);
-        manePain.add(commentwrap,0,7,8,3);
-        manePain.add(sendwrap,8,7,2,3);
-        manePain.add(peoplewrap, 10,1,4,9);
-        manePain.add(lblwrap,10,0,4,1);
-
-        chatwrap.setStyle("-fx-background-color: red");
-        commentwrap.setStyle("-fx-background-color: blue");
-        sendwrap.setStyle("-fx-background-color: green");
-        peoplewrap.setStyle("-fx-background-color: yellow");
-        lblwrap.setStyle("-fx-background-color: #b52aa7");
-
+        chat.setMinHeight(350);
         chatwrap.getChildren().add(chat);
         HBox.setHgrow(chat,Priority.ALWAYS);
         chat.setMaxWidth(Double.MAX_VALUE);
 
-        peoplewrap.getChildren().add(people);
-        VBox.setVgrow(people,Priority.ALWAYS);
-        people.setMaxHeight(Double.MAX_VALUE);
+        BorderPane down = new BorderPane();
+        down.setStyle("-fx-background-color: blue");
+        TextField comment = new TextField();
+        comment.setAlignment(Pos.TOP_LEFT);
+        comment.setPromptText("Введите сообщение");
+        Button send = new Button("ОТПРАВИТЬ");
+        down.setLeft(comment);
+        comment.setPrefWidth(560);
+        comment.setPrefHeight(150);
+        comment.setMinHeight(150);
+        down.setRight(send);
+        send.setPrefWidth(140);
+        send.setPrefHeight(150);
+        send.setMinHeight(150);
+        chat.setStyle("-fx-highlight-fill: #ADFF2F; -fx-highlight-text-fill: #B22222; -fx-font-size: 14px;");
+        send.addEventHandler(ActionEvent.ACTION, actionEvent -> {
+            Date date = new Date();
+            chat.setText(chat.getText()+ "LadyBabyPrincess_1930 ("+ messagetime.format(date) +")\n");
+            chat.setText(chat.getText()+ comment.getText()+"\n\n");
+            comment.setText("");
+            comment.requestFocus();
+        });
 
-        commentwrap.getChildren().add(comment);
-        HBox.setHgrow(comment,Priority.ALWAYS);
-        comment.setMaxWidth(Double.MAX_VALUE);
-        comment.setMaxHeight(Double.MAX_VALUE);
 
-        sendwrap.getChildren().add(send);
-        HBox.setHgrow(send,Priority.ALWAYS);
-        send.setMaxWidth(Double.MAX_VALUE);
-        send.setMaxHeight(Double.MAX_VALUE);
 
+        VBox right = new VBox();
+        ObservableList<String> langs = FXCollections.observableArrayList("Павел(Ремонт)","Ульяна Фёдоровна","Галя","Агенство по недвижимости","Юрка","Щикунов","'Единая страна'","Ева (Косметолог)","Сестрёнка","Олег Павлович","Водонабор","Пекарня 'Абелх Аклуб'","Аня","ДеньгиБыстроРу","Езда на лошадях","Николай Д.","Имя Фамилия","Елена Струкская");
+        ListView<String> people = new ListView<>(langs);
+        people.setStyle("-fx-control-inner-background: #f5d0f1;-fx-control-inner-background-alt: #f5c4f0;");
+        HBox lblwrap = new HBox();
+        Label lbl = new Label("Контакты:");
+
+        manePain.getChildren().addAll(left,right);
+
+        left.setPrefWidth(700);
+
+
+        left.getChildren().addAll(chatwrap,down);
+        chatwrap.setPrefHeight(350);
+        down.setPrefHeight(150);
+
+        right.getChildren().addAll(lblwrap,people);
+        people.setPrefSize(280,450);
         lblwrap.getChildren().add(lbl);
+        lblwrap.setPrefSize(280,50);
+        lblwrap.setStyle("-fx-background-color: #b52aa7");
         lbl.setStyle("-fx-font-size: 3em;-fx-text-fill: white;");
-
 
         return manePain;
     }

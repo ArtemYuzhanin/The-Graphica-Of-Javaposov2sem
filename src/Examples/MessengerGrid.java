@@ -27,7 +27,6 @@ public class MessengerGrid extends Application {
     }
 
     private Parent createInterface() {
-        SimpleDateFormat day = new SimpleDateFormat("dd/MM/yyyy");
         SimpleDateFormat messagetime = new SimpleDateFormat("HH:mm:ss dd/MM/yyyy");
 
         GridPane manePain = new GridPane();
@@ -45,11 +44,10 @@ public class MessengerGrid extends Application {
 
         HBox sendwrap = new HBox();
         Button send = new Button("ОТПРАВИТЬ");
+        chat.setStyle("-fx-highlight-fill: #ADFF2F; -fx-highlight-text-fill: #B22222; -fx-font-size: 14px;");
         send.addEventHandler(ActionEvent.ACTION, actionEvent -> {
             Date date = new Date();
-            chat.setStyle("-fx-highlight-fill: #ADFF2F; -fx-highlight-text-fill: #B22222; -fx-font-size: 13px;");
             chat.setText(chat.getText()+ "Xx_TrueGamer2001_xX ("+ messagetime.format(date) +")\n");
-            chat.setStyle("-fx-highlight-fill: #ADFF2F; -fx-highlight-text-fill: #B22222; -fx-font-size: 16px;");
             chat.setText(chat.getText()+ comment.getText()+"\n\n");
             comment.setText("");
             comment.requestFocus();
@@ -58,7 +56,7 @@ public class MessengerGrid extends Application {
         VBox peoplewrap = new VBox();
         ObservableList<String> langs = FXCollections.observableArrayList("Санёк", "Ефим Владимирович", "Катя", "Ролики и Велосипеды", "Енисей","Тётя Лида", "Ножи Под Заказ","Оксана Михайловна","Егор","Папа","ОАО 'Корнеплод'","Сосед Ваня","Лена","Армэн (Арбузы)","Никита","Имя Фамилия","Елисей");
         ListView<String> people = new ListView<>(langs);
-        people.setStyle("-fx-control-inner-background: #f5d0f1;-fx-control-inner-background-alt: #f5c4f0;");
+        people.setStyle("-fx-control-inner-background: #94f4ff;-fx-control-inner-background-alt: #85d8ff;");
         //people.setStyle("-fx-control-inner-background-alt: derive(-fx-control-inner-background, 50%);");
 
         HBox lblwrap = new HBox();
@@ -84,7 +82,7 @@ public class MessengerGrid extends Application {
         commentwrap.setStyle("-fx-background-color: blue");
         sendwrap.setStyle("-fx-background-color: green");
         peoplewrap.setStyle("-fx-background-color: yellow");
-        lblwrap.setStyle("-fx-background-color: #b52aa7");
+        lblwrap.setStyle("-fx-background-color: #1f2f7d");
 
         chatwrap.getChildren().add(chat);
         HBox.setHgrow(chat,Priority.ALWAYS);
