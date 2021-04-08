@@ -14,7 +14,7 @@ import javafx.stage.Stage;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class MessengerGrid extends Application {
+public class Testino extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -53,7 +53,7 @@ public class MessengerGrid extends Application {
             chat.setText(chat.getText()+ comment.getText()+"\n\n");
             comment.setText("");
             comment.requestFocus();
-        });
+                });
 
         VBox peoplewrap = new VBox();
         ObservableList<String> langs = FXCollections.observableArrayList("Санёк", "Ефим Владимирович", "Катя", "Ролики и Велосипеды", "Енисей","Тётя Лида", "Ножи Под Заказ","Оксана Михайловна","Егор","Папа","ОАО 'Корнеплод'","Сосед Ваня","Лена","Армэн (Арбузы)","Никита","Имя Фамилия","Елисей");
@@ -110,4 +110,6 @@ public class MessengerGrid extends Application {
 
         return manePain;
     }
+
+    
 }
