@@ -1,3 +1,13 @@
 .Strooppanel {
 -fx-background-color: white;
+-fx-border-color: black;
+-fx-border-width:1px;
+}
+.fouls {
+-fx-font-size: 30px;
+-fx-font-weight: bolder;
+}
+.boxes {
+-fx-stroke: black;
+-fx-stroke-width: 2;
 }
