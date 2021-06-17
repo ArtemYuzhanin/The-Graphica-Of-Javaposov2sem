@@ -11,14 +11,13 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
 import java.util.Random;
 
-public class SimesterFourthEndgame extends Application {
+public class SimesterFourthEndgame_AnotherClass extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         primaryStage.setTitle("ПОСЛЕДНИЙ БОЙ");
@@ -79,31 +78,20 @@ public class SimesterFourthEndgame extends Application {
         Stroopcanvas.setAlignment(Pos.CENTER);
         Stroopcanvas.getChildren().addAll(nabel1,nabel2,nabel3,rect1,nabel4,nabel5,rect2);
 
-        Random decider = new Random();
         ArrayList<Node> nodes = new ArrayList<Node>();
         String[] names = {"Красный","Оранжевый","Жёлтый","Зелёный","Голубой","Синий","Фиолетовый","Чёрный","Коричневый"};
         String[] insides = {"red","orange","yellow","green","skyblue","blue","violet","black","brown"};
         addAllDescendents(Stroopcanvas,nodes);
-
         Stroopadd.addEventHandler(ActionEvent.ACTION, actionEvent -> {
-            System.out.println(nodes.size());
-            if (decider.nextBoolean()) {
-                nodes.add(new Label(names[decider.nextInt(8)]));
-                Stroopcanvas.getChildren().add(nodes.get(nodes.size() - 1));
-                (nodes.get(nodes.size() - 1)).getStyleClass().add("fouls");
-                (nodes.get(nodes.size() - 1)).setStyle("-fx-text-fill:"+insides[decider.nextInt(8)]);
-            } else {
-                nodes.add(new Rectangle(60,20));
-                Stroopcanvas.getChildren().add(nodes.get(nodes.size() - 1));
-                (nodes.get(nodes.size() - 1)).getStyleClass().add("boxes");
-                (nodes.get(nodes.size() - 1)).setStyle("-fx-fill:"+insides[decider.nextInt(8)]);
-            }
 
+            StroopFactory nodegiver = new StroopFactory(names,insides);
+            System.out.println(nodes.size());
+            Stroopcanvas.getChildren().add(nodegiver.birth());
+            nodes.add(nodegiver.birth());
             if (nodes.size() > 12) {
                 Stroopcanvas.getChildren().remove(nodes.get(0));
                 nodes.remove(0);
             }
-
         });
         return manePain;
     }
@@ -114,5 +102,27 @@ public class SimesterFourthEndgame extends Application {
             if (node instanceof Parent)
                 addAllDescendents((Parent)node, nodes);
         }
+    }
+
+}
+class StroopFactory {
+    private Node resultNode;
+    private static Random decider = new Random();
+
+
+    StroopFactory(String[] names, String[] insides){
+        if (decider.nextBoolean()) {
+            resultNode = new Label(names[decider.nextInt(8)]);
+            resultNode.getStyleClass().add("fouls");
+            resultNode.setStyle("-fx-text-fill:"+insides[decider.nextInt(8)]);
+        } else {
+            resultNode = new Rectangle(60,20);
+            resultNode.getStyleClass().add("boxes");
+            resultNode.setStyle("-fx-fill:"+insides[decider.nextInt(8)]);
+        }
+    }
+
+    public Node birth(){
+        return resultNode;
     }
 }
